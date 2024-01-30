@@ -1,0 +1,110 @@
+/* =================================================================================
+    フォントの読み込み
+================================================================================== */
+
+/* ==== 'M PLUS 1p' - 通常フォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+/* ==== 'Ubuntu' - 英字デザインフォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+/* ==== 'Source Code Pro' - 等幅フォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+/* ==== 'Zen Kurenaido' - 手書きフォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Zen+Kurenaido&display=swap');
+/* ==== 'Font Awesome 6 Free' - アイコンフォント ==== */
+@import url('https://use.fontawesome.com/releases/v6.5.1/css/all.css');
+
+/* =================================================================================
+    色変数
+================================================================================== */
+
+:root {
+    /* ==== Hue - 基準ブランドカラー ==== */
+    --hue: #222244;
+    /* ==== Lightness - 明度 ==== */
+    --l0b: 20%;
+    --l1b: 25%;
+    --l2b: 30%;
+    --l3b: 35%;
+    --l4b: 40%;
+    --l0c: 80%;
+    --l1c: 85%;
+    --l2c: 90%;
+    --l3c: 95%;
+    --l4c: 100%;
+    --l0s: 0%;
+    --l1s: 5%;
+    --l2s: 10%;
+    --l3s: 15%;
+    --l4s: 20%;
+    /* ==== Chroma - 彩度 ==== */
+    --c0: 0;
+    --c1: 0.025;
+    --c2: 0.050;
+    --c3: 0.075;
+    --c4: 0.100;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /* ==== Lightness - 明度 ==== */
+        --l0b: 82%;
+        --l1b: 86%;
+        --l2b: 90%;
+        --l3b: 94%;
+        --l4b: 98%;
+        --l0c: 30%;
+        --l1c: 25%;
+        --l2c: 20%;
+        --l3c: 15%;
+        --l4c: 10%;
+        --l0s: 25%;
+        --l1s: 20%;
+        --l2s: 15%;
+        --l3s: 10%;
+        --l4s: 5%;
+    }
+}
+
+/* =================================================================================
+    CSSのNormalize
+================================================================================== */
+
+* {
+    margin: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: 1rem/1.125 'M PLUS 1p';
+    word-break: auto-phrase;
+    color: oklch(from var(--hue) var(--l0c) var(--c1) h);
+}
+
+:where(ul, ol, li) {
+    padding-left: revert;
+}
+
+/* =================================================================================
+    全体
+================================================================================== */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: oklch(from var(--hue) var(--l0b) var(--c1) h);
+
+    &>*+* {
+        margin-top: 1rem;
+    }
+}
+
+canvas {
+    display: block;
+    margin: 2rem auto 2rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    aspect-ratio: 16/9;
+    background-color: black;
+    box-shadow: 0 0 1rem oklch(from var(--hue) var(--l1s) var(--c1) h);
+    border: solid 1px oklch(from var(--hue) var(--l1c) var(--c1) h / .67);
+}
