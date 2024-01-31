@@ -105,25 +105,32 @@ const motions = await Promise.all(modelInfo.vmd.map(([name, path]) => new Promis
     });
 })));
 
-
 /**
  * モーションを読み込むためのヘルパーを作成
  */
-space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: true });
+space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: false });
 
 space.helper.add(space.mesh, {
-    "animation": motions[0]
+    "animation": motions
 });
 
 const mixer = space.helper.objects.get(space.mesh).mixer;
 
+let a = 0
+
 const render = () => {
     space.renderer.clear();
-    space.helper.update(1 / 60);
+    space.helper.update(1 / 30);
+    a += 1 / 30;
+    console.log(a);
+    if (a >= 2) {
+        space.helper.update(-2);
+        clearInterval(int);
+    }
     space.renderer.render(space.scene, space.camera);
     $("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
     $("canvas").getContext("2d").drawImage(offscreenCanvas, 0, 0);
 };
 
-setInterval(render, 1000 / 60);
+let int = setInterval(render, 1000 / 30);
 
