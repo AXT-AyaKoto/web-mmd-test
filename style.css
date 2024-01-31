@@ -106,5 +106,5 @@ canvas {
     aspect-ratio: 16/9;
     background-color: black;
     box-shadow: 0 0 1rem oklch(from var(--hue) var(--l1s) var(--c1) h);
-    border: solid 1px oklch(from var(--hue) var(--l1c) var(--c1) h / .67);
+    border: solid 1px oklch(from var(--hue) var(--l1c) var(--c1) h / .5);
 }

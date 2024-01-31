@@ -9,6 +9,8 @@ Web上でMMDを動かす技術に触ってみる
 
 - `model`フォルダ内『Tda式初音ミクV4X』(Built by "Tda")
     - https://3d.nicovideo.jp/works/td30681
+- `motion`フォルダ内『応援ループモーション素材』(Built by "plover")
+    - https://seiga.nicovideo.jp/seiga/im6204261
 
 ### その他の部分
 
