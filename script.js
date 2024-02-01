@@ -60,7 +60,7 @@ let a = performance.now();
  */
 const space = {
     scene: new THREE.Scene(),
-    renderer: new THREE.WebGLRenderer({ antialias: true, canvas: offscreenCanvas }),
+    renderer: new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: offscreenCanvas }),
     camera: null,
     mesh: null,
     helper: null
@@ -77,6 +77,7 @@ space.renderer.setClearColor(0xffffff, 0);
  */
 space.camera = new THREE.PerspectiveCamera(45, $("canvas").width / $("canvas").height, 1, 1000);
 space.camera.position.set(0, 16, 16);
+space.scene.add(space.camera);
 
 /**
  * MMDLoaderを作成
