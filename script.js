@@ -1,3 +1,8 @@
+/**
+ * ページのロード完了を待つ
+ */
+await new Promise((resolve) => { window.addEventListener("load", resolve, { once: true }); });
+
 /** ================================================================================================
  * Three.jsをjsDelivrから読み込む
 ================================================================================================= */
@@ -26,11 +31,6 @@ const $ = selector => document.querySelector(selector);
  */
 const $$ = selector => document.querySelectorAll(selector);
 
-/**
- * ページのロード完了を待つ
- */
-await new Promise((resolve) => { window.addEventListener("load", resolve, { once: true }); });
-
 /** ================================================================================================
  * 読み込むモデルのパスなどをまとめたオブジェクトを作成
 ================================================================================================= */
@@ -39,7 +39,8 @@ const modelInfo = {
     "pmx": "/model/TdaMiku.pmx",
     "vmd": [
         ["motion", "/motion/06A.vmd"],
-        ["facial", "/motion/facial.vmd"]
+        ["facial", "/motion/facial.vmd"],
+        ["2", "/motion2/sora_greet-smile.vmd"],
     ],
 }
 
@@ -50,6 +51,8 @@ const offscreenCanvas = new OffscreenCanvas(1920, 1080);
 ================================================================================================= */
 
 console.log(THREE);
+
+let a = performance.now();
 
 /**
  * シーン、レンダラー、メッシュ、カメラ、ヘルパーを保管するオブジェクトを作成
@@ -96,6 +99,7 @@ await new Promise((resolve) => {
     );
 });
 
+
 /**
  * VMDモーションを読み込む
  */
@@ -105,14 +109,19 @@ const motions = await Promise.all(modelInfo.vmd.map(([name, path]) => new Promis
     });
 })));
 
+
 /**
  * モーションを読み込むためのヘルパーを作成
  */
 space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: true });
 
+
 space.helper.add(space.mesh, {
-    "animation": motions
+    "animation": [motions[0], motions[1]]
 });
+
+let b = performance.now();
+alert(b - a);
 
 const render = () => {
     space.renderer.clear();

@@ -11,6 +11,7 @@ Web上でMMDを動かす技術に触ってみる
     - https://3d.nicovideo.jp/works/td30681
 - `motion`フォルダ内『応援ループモーション素材』(Built by "plover")
     - https://seiga.nicovideo.jp/seiga/im6204261
+- `motion2`フォルダ内 テストモーション(Built by "久留島")
 
 ### その他の部分
 
