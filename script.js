@@ -66,14 +66,14 @@ const space = {
 /**
  * 環境光源を作成
  */
-space.scene.add(new THREE.AmbientLight(0xffffff, 0.67));
+space.scene.add(new THREE.AmbientLight(0xffffff, 3));
 space.renderer.setClearColor(0xffffff, 0);
 
 /**
  * カメラを作成
  */
 space.camera = new THREE.PerspectiveCamera(45, $("canvas").width / $("canvas").height, 1, 1000);
-space.camera.position.set(0, 17.5, 12.5);
+space.camera.position.set(0, 16, 16);
 
 /**
  * MMDLoaderを作成
@@ -108,25 +108,15 @@ const motions = await Promise.all(modelInfo.vmd.map(([name, path]) => new Promis
 /**
  * モーションを読み込むためのヘルパーを作成
  */
-space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: false });
+space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: true });
 
 space.helper.add(space.mesh, {
     "animation": motions
 });
 
-const mixer = space.helper.objects.get(space.mesh).mixer;
-
-let a = 0
-
 const render = () => {
     space.renderer.clear();
     space.helper.update(1 / 30);
-    a += 1 / 30;
-    console.log(a);
-    if (a >= 2) {
-        space.helper.update(-2);
-        clearInterval(int);
-    }
     space.renderer.render(space.scene, space.camera);
     $("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
     $("canvas").getContext("2d").drawImage(offscreenCanvas, 0, 0);
