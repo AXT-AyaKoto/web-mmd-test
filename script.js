@@ -95,7 +95,7 @@ await new Promise((resolve) => {
              * モデルをシーンに追加
              */
             space.scene.add(space.mesh = mesh);
-            resolve(true);
+            resolve();
         }
     );
 });
@@ -114,7 +114,9 @@ const motions = await Promise.all(modelInfo.vmd.map(([name, path]) => new Promis
 /**
  * モーションを読み込むためのヘルパーを作成
  */
-space.helper = new MMDAnimationHelper({ afterglow: 0.0, resetPhysicsOnLoop: true });
+space.helper = new MMDAnimationHelper({
+    "resetPhysicsOnLoop": false
+});
 
 
 space.helper.add(space.mesh, {
